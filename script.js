@@ -24,19 +24,19 @@ let questions = [
   new Question(
     "Comment afficher 'Bonjour' sur la console ?",
     [
-      "log('Bonjour');",
-      "prompt('Bonjour');",
-      "console.log(Bonjour');",
-      "console('Bonjour');",
+      "log('Bonjour')",
+      "prompt('Bonjour')",
+      "console.log(Bonjour')",
+      "console('Bonjour')",
     ],
-    "console.log(Bonjour');"
+    "console.log(Bonjour')"
   ),
   new Question(
     "Comment afficher 'Bonjour' dans une boite de dialogue ?",
     [
       "print('bonjour');",
       "write('bonjour')",
-      "alert('bonjour');",
+      "alert('bonjour')",
       "echo('bonjour');",
     ],
     "alert('bonjour')"
@@ -55,6 +55,16 @@ let questions = [
       "une chaîne d'éléments traités par 'MaZebbi'",
     ],
     "un nouveau tableau d'éléments traités par 'MaFonction' "
+  ),
+  new Question(
+    "Que renvoie la fonction T1.map(MaFonction) ?",
+    [
+      "un nouveau tableau d'éléments traités par 'MaFonction' ",
+      "le même tableau T1 où 'MaFonction' s'est appliqué à tous les éléments",
+      "NON",
+      "une chaîne d'éléments traités par 'MaZebbi'",
+    ],
+    "NON"
   ),
 ];
 // console.log(questions);
@@ -84,12 +94,12 @@ class Quiz {
 
 //regroup all fonction relative to the app display
 const display = {
-  elementShown: function(id, text) {
+  elementShown: function (id, text) {
     let element = document.getElementById(id);
     element.innerHTML = text;
   },
 
-  endQuiz: function() {
+  endQuiz: function () {
     endQuizHTML = `
     <h1>Quiz Terminé !</h1>
         <h3>votre score est : ${quiz.score} / ${quiz.questions.length}</h3>
@@ -100,21 +110,21 @@ const display = {
   question: function () {
     this.elementShown("question", quiz.getCurrentQuestion().text);
   },
-  choices: function() {
+  choices: function () {
     let choices = quiz.getCurrentQuestion().choices;
 
     guessHandler = (id, guess) => {
-      document.getElementById(id).onclick = function() {
+      document.getElementById(id).onclick = function () {
         quiz.guess(guess);
         quizApp();
       };
     };
     for (let index = 0; index < choices.length; index++) {
       this.elementShown("choice" + index, choices[index]);
-      guessHandler("guess" + index, choices[index])
+      guessHandler("guess" + index, choices[index]);
     }
   },
-  progress: function() {
+  progress: function () {
     let currentQuestionNumber = quiz.currentQuestionIndex + 1;
     this.elementShown(
       "progress",
